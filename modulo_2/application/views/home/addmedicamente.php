@@ -1,0 +1,35 @@
+<a href="<?php echo base_url(); ?>" class="btn btn-info pull-right">Atras</a>
+
+<h3>Agregar tipo medicamento</h3>
+
+<?php
+$validation_error=validation_errors("<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>","</div>");
+if($validation_error != "")
+{
+	echo $validation_error;
+}
+?>
+
+<?php echo form_open(null,array("name"=>"form","id"=>"form"));?>
+
+	 <div class="form-group">
+	    <div class="col-sm-7">
+    	    <label for="exampleInputPassword1">Nombre</label>    	
+			<input type="text" name="type_medicament" class="form-control" value="<?php echo set_value("type_medicament");?>">
+		</div>
+	</div>
+
+	 <div class="form-group">
+ 		<div class="col-sm-7">
+    		<label for="exampleInputPassword1">Descripción</label>
+			<textarea name="desc_type_medicament" class="form-control" id="" rows="10"><?php echo set_value("desc_type_medicament");?></textarea>
+		</div>
+	</div>
+
+	<div class="form-group">
+ 		<div class="col-sm-7  btn-add">
+		<input type="submit"  class="btn btn-primary" value="Guardar">
+		</div>
+	</div>
+
+<?php echo form_close();?>

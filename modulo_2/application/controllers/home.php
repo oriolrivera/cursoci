@@ -26,6 +26,21 @@ class Home extends CI_Controller {
 
 	}
 
+	public function addmedicamente(){
+		$this->layout->setTitle("Crear medicamnetos");
+
+		if ($this->input->post()) {
+			#die("si post");
+			if($this->form_validation->run("add_type_medicament"))
+			{
+				die("insert");
+			}
+
+		}#end post
+
+		$this->layout->view('addmedicamente');
+	}#end addmedicamente
+
 
 }#end class
 

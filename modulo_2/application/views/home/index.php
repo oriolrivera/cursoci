@@ -1,4 +1,6 @@
-
+<div class="btn-add">
+	<a href="<?php echo base_url(); ?>home/addmedicamente" class="btn btn-primary">Agregar</a>
+</div>
 <table class="table table-bordered table-hover">
 	<thead>
 		<tr>
