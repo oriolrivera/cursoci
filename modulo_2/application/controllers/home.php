@@ -158,6 +158,20 @@ class Home extends CI_Controller {
 		
 	}#end
 
+	public function deletetypemedicament(){	
+				
+		if ($this->uri->segment(3)){
+			$id = $this->uri->segment(3, 0);
+			$del=$this->medicament_model->deleteTypeMedicament($id);
+			#echo $del;
+			
+		
+		}else{
+		   show_404();
+		}
+		
+	}#end
+
 
 }#end class
 

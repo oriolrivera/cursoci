@@ -45,8 +45,9 @@ class medicament_model extends CI_Model
 	public function getMedicament(){
 
 		$query=$this->db
-			->select("`id_medicament`,`name_medicament`,`id_reletion`,`date_medicament`")
-			->from("medicamentos")
+			->select("`id_medicament`,`name_medicament`,`id_reletion`,`date_medicament`,id_type_medicament,name_type_medicament")
+			->from("medicamentos, tipo_medicamento")
+			->where("id_type_medicament = id_reletion")
 			->get();
 			return $query->result();
 
@@ -84,6 +85,32 @@ class medicament_model extends CI_Model
 		$this->db->where('id_medicament', $id);
 		$this->db->delete('medicamentos'); 
 		return true;
+	}#end
+
+	public function deleteTypeMedicament($id)
+	{
+
+		$query=$this->db
+			->select("`id_medicament`,id_reletion")
+			->from("medicamentos")
+			->where(array("id_reletion"=>$id))
+			->get();		
+			$val = $query->row();
+
+		if (!sizeof($val)) {
+			$this->db->where('id_type_medicament', $id);			
+			$this->db->delete('tipo_medicamento'); 
+			$this->session->set_flashdata("mensaje","El registro ha sido eliminado exitosamente");
+			redirect(base_url()."home/gestortypemedicamet");
+			return true;
+		}else{
+			#echo "no puedes borrar";
+			$this->session->set_flashdata("mensaje","El registro no se puede eliminado, debido a que tiene registros relacionados	");
+			redirect(base_url()."home/gestortypemedicamet");
+		}
+
+		
+		
 	}#end
 
 	

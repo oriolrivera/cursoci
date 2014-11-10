@@ -2,6 +2,18 @@
 	<h1>Gestor tipo de medicamentos</h1>
 </div>
 
+<?php
+if($this->session->flashdata("mensaje") != '')
+{
+  ?>
+   <p class='alert alert-success' role='alert'>
+    <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+    <?php echo $this->session->flashdata("mensaje")?>
+    </p>
+  <?php
+}
+?>
+
 <div class="btn-add">
 	<a href="<?php echo base_url(); ?>home/addtypemedicamente" class="btn btn-primary">Agregar tipo medicamento</a>
 </div>
@@ -28,7 +40,7 @@
 		   <td><?php echo $dato->date_type_medicament ?></td>
 
 		   <td><a href="<?php echo base_url(); ?>home/editypemedicament/<?php echo $dato->id_type_medicament ?>" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a></td>
-		   <td><a href="" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
+		   <td><a href="<?php echo base_url(); ?>home/deletetypemedicament/<?php echo $dato->id_type_medicament ?>" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></a></td>
 		 </tr>
 		 <?php } ?>
 	</tbody>

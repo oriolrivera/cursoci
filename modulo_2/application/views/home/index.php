@@ -37,7 +37,7 @@ if($this->session->flashdata("mensaje") != '')
 		<tr>
 		   <td><?php echo $dato->id_medicament ?></td>
 		   <td><?php echo $dato->name_medicament ?></td>
-		   <td><?php echo $dato->id_reletion ?></td>
+		   <td><?php echo $dato->name_type_medicament ?></td>
 		 		   <td><?php echo $dato->date_medicament ?></td>
 
 		   <td><a href="<?php echo base_url(); ?>home/editmedicament/<?php echo $dato->id_medicament ?>" class="btn btn-primary"><i class="glyphicon glyphicon-pencil"></i></a></td>
