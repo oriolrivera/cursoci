@@ -1,6 +1,25 @@
+<a href="<?php echo base_url(); ?>" class="btn btn-info pull-right">Atras</a>
+<?php
+$validation_error=validation_errors("<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>","</div>");
+if($validation_error != "")
+{
+  echo $validation_error;
+}
+?>
 
-<form role="form">
+<?php
+if($this->session->flashdata("mensaje") != '')
+{
+  ?>
+   <p class='alert alert-success' role='alert'>
+    <button type='button' class='close' data-dismiss='alert'><span aria-hidden='true'>&times;</span><span class='sr-only'>Close</span></button>
+    <?php echo $this->session->flashdata("mensaje")?>
+    </p>
+  <?php
+}
+?>
 
+<?php echo form_open(null,array("name"=>"form","id"=>"form"));?>
 
   <div class="form-group col-xs-12">
   	<div class="col-xs-4">
@@ -11,8 +30,25 @@
 
   <div class="form-group col-xs-12">
   	<div class="col-xs-4">
-   		 <label for="">Tipo</label>
-    	<input type="text" class="form-control" id="">
+   		 <label for="">Tipo medicamento</label>
+    	 <select name="type" id="type" class="form-control">
+         <option value="">Seleccione</option>
+         
+         <?php foreach ($datosTypes as $datot) {
+            if ($datot->id_type_medicament==$datos->id_reletion) {
+              ?>
+                 <option value="<?php echo $datot->id_type_medicament; ?>" selected="selected"><?php echo $datot->name_type_medicament; ?></option>
+              <?php
+            }else{
+              ?>
+                <option value="<?php echo $datot->id_type_medicament; ?>"><?php echo $datot->name_type_medicament; ?></option>
+              <?php
+            }
+           ?>
+           
+           <?php
+         } ?>
+       </select>
   	</div>
   </div>
 
@@ -23,6 +59,8 @@
  
 
  <div class="form-group col-xs-12">
-  <button type="submit" class="btn btn-default">Guardar</button>
+  <input type="hidden" name="id" value="<?php echo $datos->id_medicament ?>">
+  <button type="submit" class="btn btn-primary">Guardar</button>
   </div>
-</form>
+
+<?php echo form_close();?>
